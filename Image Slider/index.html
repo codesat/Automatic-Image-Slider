@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style2.css" />
+    <title>Slider</title>
+  </head>
+  <body>
+    <section>
+      <div class="slidercontainer">
+        <div class="images">
+          <img src="./images/1.jpg" alt="" />
+          <img src="./images/2.jpg" alt="" />
+          <img src="./images/3.jpg" alt="" />
+          <img src="./images/4.jpg" alt="" />
+          <img src="./images/5.jpg" alt="" />
+        </div>
+
+        <div onclick="sideslide(-1)" class="slidearrow left">
+          <span>&#8592</span>
+        </div>
+        <div onclick="sideslide(1)" class="slidearrow right">
+          <span>&#8594</span>
+        </div>
+
+        <div class="pagination">
+          <span onclick="btmslide(1)"></span>
+          <span onclick="btmslide(2)"></span>
+          <span onclick="btmslide(3)"></span>
+          <span onclick="btmslide(4)"></span>
+          <span onclick="btmslide(5)"></span>
+        </div>
+      </div>
+    </section>
+    <script>
+      var indexvalue = 1;
+      showImg(indexvalue);
+      function btmslide(e) {
+        showImg((indexvalue = e));
+      }
+      function sideslide(e) {
+        showImg((indexvalue += e));
+      }
+      function showImg(e) {
+        var i;
+        const img = document.querySelectorAll(".images img");
+        const sliders = document.querySelectorAll(".pagination span");
+        if (e > img.length) {
+          indexvalue = 1;
+        }
+        if (e < 1) {
+          indexvalue = img.length;
+        }
+
+        for (i = 0; i < img.length; i++) {
+          img[i].style.display = "none";
+        }
+        for (i = 0; i < sliders.length; i++) {
+          sliders[i].style.background = "black";
+        }
+        img[indexvalue - 1].style.display = "block";
+        sliders[indexvalue - 1].style.background = "white";
+      }
+    </script>
+  </body>
+</html>
